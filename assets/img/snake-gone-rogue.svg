@@ -1,12 +1,12 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 1000" role="img" aria-label="Snake Gone Rogue placeholder image">
   <defs>
-    <pattern id="g" width="40" height="40" patternUnits="userSpaceOnUse">
-      <path d="M40 0H0V40" fill="none" stroke="#c9d6bf" stroke-opacity="0.13" stroke-width="1"/>
+    <pattern id="g" width="48" height="48" patternUnits="userSpaceOnUse">
+      <path d="M48 0H0V48" fill="none" stroke="#C65A73" stroke-opacity="0.12" stroke-width="1.2"/>
     </pattern>
   </defs>
-  <rect width="1600" height="1000" fill="#2d4739"/>
+  <rect width="1600" height="1000" fill="#171A21"/>
   <rect width="1600" height="1000" fill="url(#g)"/>
-  <rect x="60" y="60" width="1480" height="880" fill="none" stroke="#c9d6bf" stroke-opacity="0.35" stroke-width="2"/>
-  <text x="800" y="484" text-anchor="middle" font-family="Archivo, Helvetica, Arial, sans-serif" font-size="82" font-weight="700" fill="#c9d6bf" letter-spacing="-2">Snake Gone Rogue</text>
-  <text x="800" y="560" text-anchor="middle" font-family="Archivo, Helvetica, Arial, sans-serif" font-size="34" font-weight="500" fill="#c9d6bf" fill-opacity="0.6">replace with a real screenshot</text>
+  <rect x="48" y="48" width="1504" height="904" fill="none" stroke="#34282D" stroke-width="3"/>
+  <text x="800" y="478" text-anchor="middle" font-family="Inter, Helvetica, Arial, sans-serif" font-size="76" font-weight="700" fill="#F4F1F2" letter-spacing="-1.5">Snake Gone Rogue</text>
+  <text x="800" y="548" text-anchor="middle" font-family="Inter, Helvetica, Arial, sans-serif" font-size="32" font-weight="500" fill="#7F7479">replace with a real screenshot</text>
 </svg>
