@@ -250,7 +250,7 @@ P["calculator"] = dict(
     github="https://github.com/USERNAME/calculator", itch=None,
 )
 
-FEATURED = ["pi-server", "diamondsim", "raincheck"]
+FEATURED = ["diamondsim", "raincheck", "snake"]
 ALL = ["pi-server", "diamondsim", "raincheck", "snake", "benchmark", "calculator"]
 
 
@@ -293,7 +293,7 @@ def build_home():
 
     <div class="main-col">
 
-      <section class="section section--tight">
+      <section class="half half--top">
         <div class="panel panel--tight duo">
           <div class="duo__about">
             <h2 class="minihead">About Me</h2>
@@ -306,7 +306,7 @@ def build_home():
         </div>
       </section>
 
-      <section class="section section--tight">
+      <section class="half half--bottom">
         <div class="section__head">
           <h2 class="section__title">Featured Projects</h2>
           <a class="section__link" href="projects.html">See all projects</a>
@@ -335,7 +335,6 @@ def build_projects():
   <div class="shell">
     <div class="intro">
       <h1>Projects</h1>
-      <p>Everything I've built that's worth a look. The larger ones have a page of their own with the architecture and the problems that took real work to solve.</p>
     </div>
     <div class="cardgrid">
 {cards}
@@ -390,6 +389,13 @@ def build_detail(key):
     <div class="detail">
 
       <section>
+        <h2>Gallery</h2>
+        <div class="gallery">
+{gal}
+        </div>
+      </section>
+
+      <section>
         <h2>What It Does</h2>
         {p['does']}
       </section>
@@ -412,13 +418,6 @@ def build_detail(key):
           <dl class="info">
 {info}
           </dl>
-        </div>
-      </section>
-
-      <section>
-        <h2>Gallery</h2>
-        <div class="gallery">
-{gal}
         </div>
       </section>
 
