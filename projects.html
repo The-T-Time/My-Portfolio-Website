@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Projects — Tyler</title>
+<meta name="description" content="Every project worth showing: roguelite games, season simulators, Android apps, home-server tooling and a few smaller utilities.">
+<meta name="color-scheme" content="light dark">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@100..900&family=Newsreader:opsz,wght@6..72,200..700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="masthead">
+  <div class="shell masthead__inner">
+    <a class="wordmark" href="index.html">Tyler <span>/ projects</span></a>
+    <nav class="sitenav" aria-label="Primary">
+      <ul>
+        <li><a href="index.html#about">About</a></li>
+        <li><a href="index.html#skills">Skills</a></li>
+        <li><a href="projects.html" aria-current="page">Projects</a></li>
+        <li><a href="index.html#links">Links</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+
+  <section class="shell hero reveal">
+    <h1 class="hero__name">Projects</h1>
+    <p class="hero__sub">Everything I've built that's worth a look, largest first. The bigger ones have their own page with the architecture and the problems that took real work to solve. The smaller ones are summarised here.</p>
+  </section>
+
+  <div class="shell">
+
+    <!-- ===== Major ===== -->
+    <div class="grouphead">
+      <h2>Major projects</h2>
+      <p>Long-running builds with their own architecture, several rewrites behind them, and a page of their own.</p>
+    </div>
+
+    <div class="entries">
+      <article class="entry">
+        <figure class="entry__shot">
+          <img src="assets/img/pi-server.svg" alt="Pi Server dashboard interface">
+        </figure>
+        <div>
+          <p class="chip">Running daily</p>
+          <h3 class="entry__title"><a href="projects/pi-server.html">Pi Server</a></h3>
+          <p class="entry__desc">A self-hosted control panel for my home network, running on a Raspberry Pi 5 as a system service. Live hardware stats over WebSockets for both the Pi and my desktop, automatic network scanning with an editable device inventory, ad-blocker and VPN status, remote power control for the PC, and push notifications when a threshold is crossed or a service drops.</p>
+          <ul class="taglist">
+            <li>Python</li><li>FastAPI</li><li>WebSockets</li><li>SQLite</li><li>Linux</li><li>systemd</li>
+          </ul>
+          <div class="actions">
+            <a class="btn btn--solid" href="projects/pi-server.html">Read the details</a>
+          </div>
+        </div>
+      </article>
+
+      <article class="entry">
+        <figure class="entry__shot">
+          <img src="assets/img/diamondsim.svg" alt="DiamondSim standings and odds view">
+        </figure>
+        <div>
+          <p class="chip">In development</p>
+          <h3 class="entry__title"><a href="projects/diamondsim.html">DiamondSim</a></h3>
+          <p class="entry__desc">A desktop app that plays out the remainder of an MLB season thousands of times and reports each team's odds of making the playoffs. Team ratings are adjusted per game for the starting pitcher, lineup and bullpen fatigue, then the postseason bracket is simulated round by round. Threaded so the interface stays responsive while thousands of seasons run.</p>
+          <ul class="taglist">
+            <li>Python</li><li>CustomTkinter</li><li>Monte Carlo</li><li>Concurrency</li><li>Caching</li>
+          </ul>
+          <div class="actions">
+            <a class="btn btn--solid" href="projects/diamondsim.html">Read the details</a>
+            <a class="btn" href="https://github.com/USERNAME/diamondsim">View on GitHub</a>
+          </div>
+        </div>
+      </article>
+
+      <article class="entry">
+        <figure class="entry__shot">
+          <img src="assets/img/raincheck.svg" alt="RainCheck Android app screens">
+        </figure>
+        <div>
+          <p class="chip chip--done">Version 1.0</p>
+          <h3 class="entry__title"><a href="projects/raincheck.html">RainCheck</a></h3>
+          <p class="entry__desc">A native Android weather app built on the classic View system. It queries several forecast providers at once, rejects the outliers statistically and averages what's left, so a single bad source can't skew your forecast. Three independent notification systems, precipitation classified into five distinct types, and a permission model that actually distinguishes "always" from "while using".</p>
+          <ul class="taglist">
+            <li>Kotlin</li><li>Android</li><li>Retrofit</li><li>WorkManager</li><li>AlarmManager</li>
+          </ul>
+          <div class="actions">
+            <a class="btn btn--solid" href="projects/raincheck.html">Read the details</a>
+            <a class="btn" href="https://github.com/USERNAME/raincheck">View on GitHub</a>
+          </div>
+        </div>
+      </article>
+
+      <article class="entry">
+        <figure class="entry__shot">
+          <img src="assets/img/snake-gone-rogue.svg" alt="Snake Gone Rogue gameplay">
+        </figure>
+        <div>
+          <p class="chip">In development · v0.7.x</p>
+          <h3 class="entry__title"><a href="projects/snake-gone-rogue.html">Snake Gone Rogue</a></h3>
+          <p class="entry__desc">Snake, rebuilt as a roguelite. Every run you pick temporary upgrades from a shop, gamble on random modifiers, and try to hit a rising quota before the debt catches you. Permanent upgrades carry between runs through a slot-based save system. Hand-drawn 16×16 sprites, a custom pixel font, a seamless ribbon renderer for the snake body, and an endless mode where the board wraps in both directions.</p>
+          <ul class="taglist">
+            <li>Python</li><li>pygame</li><li>Game design</li><li>Rendering</li><li>Save systems</li>
+          </ul>
+          <div class="actions">
+            <a class="btn btn--solid" href="projects/snake-gone-rogue.html">Read the details</a>
+            <a class="btn" href="https://USERNAME.itch.io/snake-gone-rogue">Play on itch.io</a>
+          </div>
+        </div>
+      </article>
+
+
+    </div>
+
+    <!-- ===== Smaller ===== -->
+    <div class="grouphead">
+      <h2>Smaller projects</h2>
+      <p>Focused tools that did one job well and didn't need to grow any further.</p>
+    </div>
+
+    <div class="entries">
+      <article class="entry">
+        <figure class="entry__shot">
+          <img src="assets/img/benchmark-bot.svg" alt="Human Benchmark Bot control window">
+        </figure>
+        <div>
+          <h3 class="entry__title">Human Benchmark Bot</h3>
+          <p class="entry__desc">A browser automation tool that plays the Human Benchmark reaction and typing tests, with a Tkinter control panel for picking tests and stopping mid-run. Most of the work was in the failure modes: a stop button that raced the worker thread, XPath selectors that broke on any markup change, busy-wait loops burning CPU, and a typing test that reported 0 WPM because the page never registered the first keystroke — fixed by sending the opening character alone with a short delay, then the rest instantly.</p>
+          <ul class="taglist">
+            <li>Python</li><li>Selenium</li><li>Tkinter</li><li>Threading</li>
+          </ul>
+          <div class="actions">
+            <a class="btn" href="https://github.com/USERNAME/human-benchmark-bot">View on GitHub</a>
+          </div>
+        </div>
+      </article>
+
+      <article class="entry">
+        <figure class="entry__shot">
+          <img src="assets/img/calculator.svg" alt="Scientific calculator interface">
+        </figure>
+        <div>
+          <h3 class="entry__title">Scientific Calculator</h3>
+          <p class="entry__desc">A desktop calculator that started as a Tkinter exercise and turned into something I actually use. The maths engine runs on Python's <code>decimal</code> module rather than floats, so results don't drift. There's a settings page for angle mode, precision, notation and digit separators that applies changes live and saves them to disk, plus a unit converter covering eight categories. The interface was rebuilt in CustomTkinter with a slide-out navigation panel.</p>
+          <ul class="taglist">
+            <li>Python</li><li>CustomTkinter</li><li>decimal</li><li>JSON config</li>
+          </ul>
+          <div class="actions">
+            <a class="btn" href="https://github.com/USERNAME/calculator">View on GitHub</a>
+          </div>
+        </div>
+      </article>
+
+
+    </div>
+  </div>
+
+</main>
+
+<footer class="shell colophon">
+  <span>Built and hosted by me. No trackers, no cookies.</span>
+  <span><a href="https://github.com/USERNAME">github.com/USERNAME</a></span>
+</footer>
+
+</body>
+</html>

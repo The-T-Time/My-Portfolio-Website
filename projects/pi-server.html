@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pi Server — Tyler</title>
+<meta name="description" content="A self-hosted monitoring and control dashboard for a Raspberry Pi 5 home server: FastAPI, WebSockets, SQLite, network scanning, remote power control and push alerts.">
+<meta name="color-scheme" content="light dark">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@100..900&family=Newsreader:opsz,wght@6..72,200..700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="masthead">
+  <div class="shell masthead__inner">
+    <a class="wordmark" href="../index.html">Tyler <span>/ projects</span></a>
+    <nav class="sitenav" aria-label="Primary">
+      <ul>
+        <li><a href="../index.html#about">About</a></li>
+        <li><a href="../index.html#skills">Skills</a></li>
+        <li><a href="../projects.html" aria-current="page">Projects</a></li>
+        <li><a href="../index.html#links">Links</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+
+  <section class="shell casehero">
+    <a class="backlink" href="../projects.html">Back to all projects</a>
+    <h1 class="casehero__title">Pi Server</h1>
+    <p class="casehero__lede">I wanted one page that could tell me whether anything at home was broken. It turned into a full monitoring and control stack running on a Raspberry Pi 5.</p>
+  </section>
+
+  <div class="shell">
+    <figure class="casehero__shot">
+      <img src="../assets/img/pi-server.svg" alt="Pi Server dashboard interface screenshot">
+    </figure>
+  </div>
+
+  <div class="shell case">
+
+    <aside class="case__rail">
+      <dl class="facts">
+        <div><dt>Type</dt><dd>Self-hosted web app</dd></div>
+        <div><dt>Backend</dt><dd>Python, FastAPI</dd></div>
+        <div><dt>Frontend</dt><dd>HTML, CSS, JS</dd></div>
+        <div><dt>Storage</dt><dd>SQLite</dd></div>
+        <div><dt>Host</dt><dd>Raspberry Pi 5</dd></div>
+        <div><dt>Status</dt><dd>Running daily</dd></div>
+      </dl>
+      
+    </aside>
+
+    <div class="case__body">
+
+      <section>
+        <h2>What it is</h2>
+        <p>A single-page control panel for my home network. It runs as a system service on a Raspberry Pi 5 and shows live hardware stats for the Pi and my desktop, an inventory of everything on the network, the status of the services I self-host, and controls for the things I'd otherwise have to walk across the house to do.</p>
+        <p>The brief I gave myself was narrow: everything I want to know should be visible without clicking, and everything I want to do should be one button. Every feature since has had to earn its place against that.</p>
+      </section>
+
+      <section>
+        <h2>What it does</h2>
+        <ul class="bullets">
+          <li><strong>Live system stats.</strong> CPU, memory, temperature, disk and uptime for the Pi, streamed over a WebSocket rather than polled, so the numbers move in real time instead of stepping.</li>
+          <li><strong>Desktop monitoring.</strong> A companion agent runs on my Windows PC and reports CPU, memory, disk and GPU telemetry back to the dashboard. GPU stats come from NVIDIA's management library directly.</li>
+          <li><strong>Remote power control.</strong> Wake-on-LAN to start the PC, and a queued command channel for sleep and shutdown, so a control issued while the PC is off isn't lost — it's picked up when the agent next checks in.</li>
+          <li><strong>Network scanning and device inventory.</strong> Regular scans discover what's connected; results are stored in SQLite with history. Devices can be searched, sorted, tagged by type, renamed, annotated, marked as reviewed, or deleted — so an unknown device is a one-time question, not a recurring one.</li>
+          <li><strong>Ad blocking.</strong> Integrates with the Pi-hole API rather than reimplementing it, surfacing query and blocking stats alongside everything else.</li>
+          <li><strong>Connectivity.</strong> Latency polling, on-demand speed tests, and a VPN status panel with a restart control for when the mesh network gets stuck.</li>
+          <li><strong>Alerts.</strong> Threshold and service-health alerts delivered as push notifications to my phone, so I find out something's wrong without having the dashboard open.</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>How it's built</h2>
+        <h3>Backend</h3>
+        <p>Python and FastAPI. Stats that change constantly go out over WebSockets; everything else is a plain REST endpoint. Device history and scan results live in SQLite. Network discovery shells out to <code>nmap</code> and parses the results. External integrations — the ad blocker's REST API, the VPN's status output, the push notification service — are each wrapped behind a small module so a change on their side touches one file.</p>
+        <h3>Frontend</h3>
+        <p>Hand-written HTML, CSS and JavaScript with no framework. The layout is a four-region shell: a permanent left navigation sidebar moving from the overview down through each subsystem, a top bar with labelled status dots for at-a-glance health, a card grid as the main content area, and a right sidebar on the overview page holding a merged Pi-and-PC stats card. Adding a page means adding a nav entry and a content module, nothing else.</p>
+        <h3>Deployment</h3>
+        <p>The dashboard runs as a <code>systemd</code> service, so it starts on boot and restarts itself if it crashes. The PC agent starts automatically through Windows Task Scheduler under a dedicated local account.</p>
+      </section>
+
+      <section>
+        <h2>Problems worth solving</h2>
+        <ol class="notes">
+          <li>
+            <h3>Config that survives its own updates</h3>
+            <p>Early on, updating the dashboard meant replacing the application directory — which also wiped the credentials and settings stored inside it. Now every piece of persistent state lives in a separate config directory outside the application tree: service credentials, the target machine's identifiers, the notification topic, and the device database. Updating is now a directory swap with nothing to back up first.</p>
+          </li>
+          <li>
+            <h3>Commands for a machine that isn't listening</h3>
+            <p>Sleep and shutdown can't be pushed to a PC that's asleep, and Wake-on-LAN is fire-and-forget with no acknowledgement. Instead of trying to make the dashboard talk to the PC synchronously, controls write to a command queue that the agent drains on its own schedule. The dashboard's job is to record intent; delivery is the agent's problem.</p>
+          </li>
+          <li>
+            <h3>An ISP gateway that won't cooperate</h3>
+            <p>Running ad blocking network-wide requires pointing DHCP at the Pi for DNS, and the supplied gateway locks most DHCP settings and exposes no DNS field at all. Rather than fight it, I mapped the two real options — per-device DNS overrides, which I've proven out, or bridge mode with my own router — and documented the trade-off. Sometimes the correct engineering answer is that the constraint is external and the fix is hardware.</p>
+          </li>
+          <li>
+            <h3>A second path to the PC</h3>
+            <p>Wake-on-LAN over Wi-Fi is unreliable by design. I added a direct Ethernet link between the Pi and the desktop as a dedicated control path, configured as its own network profile so it coexists with the normal Wi-Fi connection instead of competing with it.</p>
+          </li>
+        </ol>
+      </section>
+
+      <section>
+        <h2>Where it's going</h2>
+        <ul class="bullets">
+          <li><strong>Historical graphs</strong> built from periodic SQLite samples, so I can see trends instead of only the current moment.</li>
+          <li><strong>Per-device bandwidth</strong> and a scheduled speed-test history.</li>
+          <li><strong>Deeper ad-blocker reporting</strong> — top blocked domains and top clients.</li>
+          <li><strong>Container health cards</strong> and a searchable alerts log.</li>
+          <li><strong>Personal cloud storage</strong> as the next major addition, planned as a containerised stack on external storage. Treating it as a proof of concept first, since the storage I have on hand isn't rated for that write load.</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>Screens</h2>
+        <div class="shotgrid">
+          <figure>
+            <img src="../assets/img/placeholder.svg" alt="">
+            <figcaption>Overview with live stats</figcaption>
+          </figure>
+          <figure>
+            <img src="../assets/img/placeholder.svg" alt="">
+            <figcaption>Device inventory</figcaption>
+          </figure>
+          <figure>
+            <img src="../assets/img/placeholder.svg" alt="">
+            <figcaption>Network and connectivity</figcaption>
+          </figure>
+        </div>
+      </section>
+
+    </div>
+  </div>
+
+  <div class="shell pager">
+    <a href="../projects.html">All projects</a>
+    <a href="diamondsim.html">Next: DiamondSim</a>
+  </div>
+
+</main>
+
+<footer class="shell colophon">
+  <span>Built and hosted by me. No trackers, no cookies.</span>
+  <span><a href="https://github.com/USERNAME">github.com/USERNAME</a></span>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>RainCheck — Tyler</title>
+<meta name="description" content="A native Android weather app in Kotlin that aggregates several forecast providers, rejects outliers statistically, and runs three independent notification systems.">
+<meta name="color-scheme" content="light dark">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@100..900&family=Newsreader:opsz,wght@6..72,200..700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="masthead">
+  <div class="shell masthead__inner">
+    <a class="wordmark" href="../index.html">Tyler <span>/ projects</span></a>
+    <nav class="sitenav" aria-label="Primary">
+      <ul>
+        <li><a href="../index.html#about">About</a></li>
+        <li><a href="../index.html#skills">Skills</a></li>
+        <li><a href="../projects.html" aria-current="page">Projects</a></li>
+        <li><a href="../index.html#links">Links</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+
+  <section class="shell casehero">
+    <a class="backlink" href="../projects.html">Back to all projects</a>
+    <h1 class="casehero__title">RainCheck</h1>
+    <p class="casehero__lede">Every weather app tells you what one provider thinks. RainCheck asks several, notices when one of them is wrong, and tells you what the rest agree on.</p>
+  </section>
+
+  <div class="shell">
+    <figure class="casehero__shot">
+      <img src="../assets/img/raincheck.svg" alt="RainCheck app screens">
+    </figure>
+  </div>
+
+  <div class="shell case">
+
+    <aside class="case__rail">
+      <dl class="facts">
+        <div><dt>Type</dt><dd>Android app</dd></div>
+        <div><dt>Language</dt><dd>Kotlin</dd></div>
+        <div><dt>UI</dt><dd>Android Views</dd></div>
+        <div><dt>Networking</dt><dd>Retrofit</dd></div>
+        <div><dt>Status</dt><dd>Version 1.0</dd></div>
+        <div><dt>License</dt><dd>MIT</dd></div>
+      </dl>
+      <div class="actions" style="margin-top:1.25rem">
+        <a class="btn btn--solid" href="https://github.com/USERNAME/raincheck">View on GitHub</a>
+      </div>
+    </aside>
+
+    <div class="case__body">
+
+      <section>
+        <h2>What it is</h2>
+        <p>A native Android weather app, written in Kotlin against the classic View system rather than Compose. Current conditions, an hourly and daily forecast, severe weather alerts, and a notification system I actually leave switched on.</p>
+        <p>The thing that makes it different is underneath. Forecast providers disagree, sometimes badly, and picking one means inheriting whatever that provider gets wrong in your area. RainCheck queries several and combines them, which turns a data-source problem into a statistics problem.</p>
+      </section>
+
+      <section>
+        <h2>The part I care about most</h2>
+        <h3>Combining sources that disagree</h3>
+        <p>Averaging several forecasts sounds like it should be a one-liner, and it isn't. A plain mean is exactly as vulnerable to one bad source as using that source alone would be — a provider reporting a temperature twenty degrees off drags the average with it, and the user has no way to know.</p>
+        <p>So before anything is averaged, outliers are rejected. The app uses a modified Z-score based on median absolute deviation, which is a robust measure: unlike standard deviation, it isn't itself distorted by the outlier it's meant to catch. Values that fall too far from the median get dropped, and only the surviving sources are averaged.</p>
+        <p>The result is a forecast that degrades gracefully. One provider going down or going haywire doesn't show the user a wrong number; it just slightly widens the spread of what's left.</p>
+      </section>
+
+      <section>
+        <h2>What's in it</h2>
+        <ul class="bullets">
+          <li><strong>Three independent notification types.</strong> A daily summary on an exact alarm, precipitation warnings on background work scheduling, and severe weather alerts from the national service. They're genuinely separate systems because they have genuinely different timing requirements — a daily briefing must arrive at a specific minute; a precipitation check can be batched.</li>
+          <li><strong>Shared notification plumbing.</strong> All three build their content through one builder and check one event tracker for deduplication, so you don't get told about the same storm twice by two different systems.</li>
+          <li><strong>Precipitation classified properly.</strong> Rain, drizzle, thunderstorms, snow, and freezing rain or sleet are distinguished and each gets its own notification wording. "Precipitation expected" is not useful when the answer is black ice.</li>
+          <li><strong>A real permission model.</strong> Location permission is treated as three states — always, while in use, and denied — instead of the usual granted/not-granted binary, because background notifications need something foreground display doesn't.</li>
+          <li><strong>Theme switching</strong> with an animated transition, and slide transitions between screens applied at theme level so navigation is consistent everywhere.</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>Problems worth solving</h2>
+        <ol class="notes">
+          <li>
+            <h3>Disabled controls that explain themselves</h3>
+            <p>If you haven't granted background location, the controls depending on it should be visibly unavailable — but a control that's fully disabled can't tell you <em>why</em> it's unavailable, which leaves users stuck. The solution was to separate the two concerns that "disabled" normally bundles together: transparency handles the visual dimming so the control reads as inactive, while the touch handler stays live and shows an explanation with a route to fixing it.</p>
+          </li>
+          <li>
+            <h3>An expand animation without the flash</h3>
+            <p>Expanding a forecast row with Android's default automatic transition produced a visible flash, because the default runs its fade and its bounds change in sequence — briefly showing content at the wrong size. Composing the transition by hand, with the bounds change and the fade running in parallel, removed it. It's the kind of fix nobody notices, which is the point.</p>
+          </li>
+          <li>
+            <h3>A master switch that doesn't destroy your settings</h3>
+            <p>Turning notifications off globally and back on used to reset every sub-setting to its default, silently undoing configuration the user had done deliberately. The master toggle now gates delivery without writing to the individual settings at all, so flipping it twice returns you exactly where you were.</p>
+          </li>
+          <li>
+            <h3>Deleting code as a feature</h3>
+            <p>Before publishing I did a full cleanup pass: removed dead utility classes, unused API endpoints, stale manifest entries, invalid resource qualifiers, orphaned strings, and around 130 unused drawable icons. I also renamed internals that had drifted from what they actually meant — a field called <code>rainChance</code> that had long since covered all precipitation became <code>precipChance</code>. A codebase that lies about itself is a codebase you can't trust six months later.</p>
+          </li>
+        </ol>
+      </section>
+
+      <section>
+        <h2>Published properly</h2>
+        <p>The repository ships with a README, an architecture document, an API reference and a changelog, plus an MIT license. All traffic is HTTPS; the cleartext exemption was removed rather than left in place "just in case". API keys are kept in a local properties file that's excluded from version control, so there was never a secret to redact.</p>
+      </section>
+
+      <section>
+        <h2>Screens</h2>
+        <div class="shotgrid">
+          <figure>
+            <img src="../assets/img/placeholder.svg" alt="">
+            <figcaption>Current conditions</figcaption>
+          </figure>
+          <figure>
+            <img src="../assets/img/placeholder.svg" alt="">
+            <figcaption>Expanded forecast</figcaption>
+          </figure>
+          <figure>
+            <img src="../assets/img/placeholder.svg" alt="">
+            <figcaption>Notification settings</figcaption>
+          </figure>
+        </div>
+      </section>
+
+    </div>
+  </div>
+
+  <div class="shell pager">
+    <a href="diamondsim.html">Previous: DiamondSim</a>
+    <a href="snake-gone-rogue.html">Next: Snake Gone Rogue</a>
+  </div>
+
+</main>
+
+<footer class="shell colophon">
+  <span>Built and hosted by me. No trackers, no cookies.</span>
+  <span><a href="https://github.com/USERNAME">github.com/USERNAME</a></span>
+</footer>
+
+</body>
+</html>

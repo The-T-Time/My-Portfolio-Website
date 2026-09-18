@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tyler — software projects</title>
+<meta name="description" content="Tyler builds games, desktop apps, Android apps and home-server tooling in Python, Kotlin and JavaScript. A portfolio of finished and in-progress work.">
+<meta name="color-scheme" content="light dark">
+
+<meta property="og:title" content="Tyler — software projects">
+<meta property="og:description" content="Games, desktop apps, Android apps and home-server tooling.">
+<meta property="og:type" content="website">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@100..900&family=Newsreader:opsz,wght@6..72,200..700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="masthead">
+  <div class="shell masthead__inner">
+    <a class="wordmark" href="index.html">Tyler <span>/ projects</span></a>
+    <nav class="sitenav" aria-label="Primary">
+      <ul>
+        <li><a href="#about">About</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="projects.html">Projects</a></li>
+        <li><a href="#links">Links</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+
+  <!-- ============ HERO ============ -->
+  <section class="shell hero reveal">
+    <h1 class="hero__name">Tyler</h1>
+    <p class="hero__lede">I build the software I wish existed, then keep rebuilding it until it feels right.</p>
+    <p class="hero__sub">A roguelite game engine written from scratch, a season simulator for baseball, an Android weather app that argues with itself about the forecast, and a home server that tells me when something breaks. All personal projects, all built end to end.</p>
+    <p class="hero__strip">
+      <span>Python</span><span>Kotlin</span><span>JavaScript</span><span>pygame</span><span>FastAPI</span><span>Android SDK</span><span>SQLite</span>
+    </p>
+  </section>
+
+  <!-- ============ ABOUT ============ -->
+  <section class="shell band" id="about">
+    <div class="band__head">
+      <h2 class="band__title">About</h2>
+    </div>
+    <div class="split">
+      <div class="prose">
+        <p>I'm a self-taught programmer who builds things for the pleasure of building them. No client briefs, no tickets — just a problem I find interesting and a blank project folder.</p>
+        <p>What holds my attention is the part after something technically works. A snake that moves across a wrapping board is easy; a snake that wraps without a single frame of flicker took two full rendering rewrites. A weather app can show you one API's forecast; making four disagreeing sources produce one number you can trust is a different problem entirely.</p>
+        <p>So most of what's here has been through several passes. I care about architecture that holds up when I come back six weeks later, about finding the actual root cause instead of the workaround that makes the symptom disappear, and about the small interface details that nobody notices until they're missing.</p>
+        <p>My projects tend to land in four areas: games, desktop tools, mobile apps, and home infrastructure. The subject changes; the approach doesn't.</p>
+      </div>
+      <dl class="facts">
+        <div><dt>Focus</dt><dd>Games, tools, home infra</dd></div>
+        <div><dt>Main languages</dt><dd>Python, Kotlin</dd></div>
+        <div><dt>Largest project</dt><dd>Pi Server</dd></div>
+        <div><dt>Longest-running</dt><dd>Snake Gone Rogue</dd></div>
+        <div><dt>Code</dt><dd><a href="https://github.com/USERNAME">GitHub</a></dd></div>
+      </dl>
+    </div>
+  </section>
+
+  <!-- ============ SKILLS ============ -->
+  <section class="shell band" id="skills">
+    <div class="band__head">
+      <h2 class="band__title">Skills</h2>
+      <p class="band__aside">Things I've shipped something real with</p>
+    </div>
+    <div class="skills">
+      <div>
+        <h3>Languages</h3>
+        <ul>
+          <li>Python</li>
+          <li>Kotlin</li>
+          <li>JavaScript</li>
+          <li>HTML &amp; CSS</li>
+          <li>SQL</li>
+          <li>Bash</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Frameworks &amp; libraries</h3>
+        <ul>
+          <li>pygame</li>
+          <li>FastAPI</li>
+          <li>Android SDK (Views)</li>
+          <li>CustomTkinter / Tkinter</li>
+          <li>Retrofit</li>
+          <li>Selenium</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Systems &amp; tooling</h3>
+        <ul>
+          <li>SQLite</li>
+          <li>Linux &amp; systemd</li>
+          <li>Raspberry Pi</li>
+          <li>REST APIs &amp; WebSockets</li>
+          <li>Git &amp; GitHub</li>
+          <li>Home networking</li>
+        </ul>
+      </div>
+      <div>
+        <h3>How I work</h3>
+        <ul>
+          <li>Root-cause debugging</li>
+          <li>Incremental, reviewable changes</li>
+          <li>Regression tests with fixes</li>
+          <li>Separating logic from UI</li>
+          <li>Writing docs as I go</li>
+          <li>Reading code before changing it</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ FEATURED PROJECTS ============ -->
+  <section class="shell band" id="work">
+    <div class="band__head">
+      <h2 class="band__title">Featured projects</h2>
+      <p class="band__aside"><a href="projects.html">See everything</a></p>
+    </div>
+
+    <div class="entries">
+      <article class="entry">
+        <figure class="entry__shot">
+          <img src="assets/img/pi-server.svg" alt="Pi Server dashboard interface">
+        </figure>
+        <div>
+          <p class="chip">Running daily</p>
+          <h3 class="entry__title"><a href="projects/pi-server.html">Pi Server</a></h3>
+          <p class="entry__desc">A self-hosted control panel for my home network, running on a Raspberry Pi 5. Live stats over WebSockets for the Pi and my desktop, network scanning and device inventory, ad-blocking and VPN status, remote power control, and push alerts when something goes wrong.</p>
+          <ul class="taglist">
+            <li>Python</li><li>FastAPI</li><li>WebSockets</li><li>SQLite</li><li>Linux</li>
+          </ul>
+          <div class="actions">
+            <a class="btn btn--solid" href="projects/pi-server.html">Read the details</a>
+          </div>
+        </div>
+      </article>
+
+      <article class="entry">
+        <figure class="entry__shot">
+          <img src="assets/img/diamondsim.svg" alt="DiamondSim standings and odds view">
+        </figure>
+        <div>
+          <p class="chip">In development</p>
+          <h3 class="entry__title"><a href="projects/diamondsim.html">DiamondSim</a></h3>
+          <p class="entry__desc">A desktop app that simulates the rest of an MLB season thousands of times over and reports each team's playoff odds. Ratings adjust for the starting pitcher, the lineup and bullpen fatigue, and the postseason bracket is simulated round by round.</p>
+          <ul class="taglist">
+            <li>Python</li><li>CustomTkinter</li><li>Simulation</li><li>Concurrency</li>
+          </ul>
+          <div class="actions">
+            <a class="btn btn--solid" href="projects/diamondsim.html">Read the details</a>
+            <a class="btn" href="https://github.com/USERNAME/diamondsim">View on GitHub</a>
+          </div>
+        </div>
+      </article>
+
+      <article class="entry">
+        <figure class="entry__shot">
+          <img src="assets/img/raincheck.svg" alt="RainCheck Android app screens">
+        </figure>
+        <div>
+          <p class="chip chip--done">Version 1.0</p>
+          <h3 class="entry__title"><a href="projects/raincheck.html">RainCheck</a></h3>
+          <p class="entry__desc">A native Android weather app that pulls from several forecast providers at once, throws out the outliers and shows you the consensus. Three separate notification systems, a real three-state location permission model, and a lot of attention paid to transitions.</p>
+          <ul class="taglist">
+            <li>Kotlin</li><li>Android</li><li>Retrofit</li><li>WorkManager</li>
+          </ul>
+          <div class="actions">
+            <a class="btn btn--solid" href="projects/raincheck.html">Read the details</a>
+            <a class="btn" href="https://github.com/USERNAME/raincheck">View on GitHub</a>
+          </div>
+        </div>
+      </article>
+
+      <article class="entry">
+        <figure class="entry__shot">
+          <img src="assets/img/snake-gone-rogue.svg" alt="Snake Gone Rogue gameplay">
+        </figure>
+        <div>
+          <p class="chip">In development · v0.7.x</p>
+          <h3 class="entry__title"><a href="projects/snake-gone-rogue.html">Snake Gone Rogue</a></h3>
+          <p class="entry__desc">A roguelite built on top of Snake. Runs are shaped by permanent upgrades, temporary boosts, random modifiers and a quota you have to hit or lose the run. Custom pixel art, a hand-rolled ribbon renderer for the snake body, and an endless mode where the board wraps in both directions.</p>
+          <ul class="taglist">
+            <li>Python</li><li>pygame</li><li>Game design</li><li>Rendering</li>
+          </ul>
+          <div class="actions">
+            <a class="btn btn--solid" href="projects/snake-gone-rogue.html">Read the details</a>
+            <a class="btn" href="https://USERNAME.itch.io/snake-gone-rogue">Play on itch.io</a>
+          </div>
+        </div>
+      </article>
+
+
+    </div>
+  </section>
+
+  <!-- ============ LINKS ============ -->
+  <section class="shell band" id="links">
+    <div class="band__head">
+      <h2 class="band__title">Links</h2>
+    </div>
+    <div class="linkrow">
+      <a class="linkcard" href="https://github.com/USERNAME">
+        <span class="linkcard__label">GitHub</span>
+        <span class="linkcard__meta">Source for everything here</span>
+      </a>
+      <a class="linkcard" href="mailto:you@example.com">
+        <span class="linkcard__label">Email</span>
+        <span class="linkcard__meta">Best way to reach me</span>
+      </a>
+      <a class="linkcard" href="projects.html">
+        <span class="linkcard__label">All projects</span>
+        <span class="linkcard__meta">Including the smaller ones</span>
+      </a>
+    </div>
+  </section>
+
+</main>
+
+<footer class="shell colophon">
+  <span>Built and hosted by me. No trackers, no cookies.</span>
+  <span><a href="https://github.com/USERNAME">github.com/USERNAME</a></span>
+</footer>
+
+</body>
+</html>

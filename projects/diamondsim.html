@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DiamondSim — Tyler</title>
+<meta name="description" content="A Python desktop app that simulates the rest of an MLB season thousands of times to produce playoff odds, with per-game rating adjustments and a threaded simulation engine.">
+<meta name="color-scheme" content="light dark">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@100..900&family=Newsreader:opsz,wght@6..72,200..700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="masthead">
+  <div class="shell masthead__inner">
+    <a class="wordmark" href="../index.html">Tyler <span>/ projects</span></a>
+    <nav class="sitenav" aria-label="Primary">
+      <ul>
+        <li><a href="../index.html#about">About</a></li>
+        <li><a href="../index.html#skills">Skills</a></li>
+        <li><a href="../projects.html" aria-current="page">Projects</a></li>
+        <li><a href="../index.html#links">Links</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+
+  <section class="shell casehero">
+    <a class="backlink" href="../projects.html">Back to all projects</a>
+    <h1 class="casehero__title">DiamondSim</h1>
+    <p class="casehero__lede">Play the rest of the baseball season a few thousand times, count how often each team makes the playoffs, and show the answer as a percentage you can argue with.</p>
+  </section>
+
+  <div class="shell">
+    <figure class="casehero__shot">
+      <img src="../assets/img/diamondsim.svg" alt="DiamondSim standings and playoff odds view">
+    </figure>
+  </div>
+
+  <div class="shell case">
+
+    <aside class="case__rail">
+      <dl class="facts">
+        <div><dt>Type</dt><dd>Desktop app</dd></div>
+        <div><dt>Language</dt><dd>Python</dd></div>
+        <div><dt>UI</dt><dd>CustomTkinter</dd></div>
+        <div><dt>Method</dt><dd>Monte Carlo</dd></div>
+        <div><dt>Status</dt><dd>In development</dd></div>
+      </dl>
+      <div class="actions" style="margin-top:1.25rem">
+        <a class="btn btn--solid" href="https://github.com/USERNAME/diamondsim">View on GitHub</a>
+      </div>
+    </aside>
+
+    <div class="case__body">
+
+      <section>
+        <h2>What it is</h2>
+        <p>A desktop application that takes the current state of an MLB season and simulates every remaining game, thousands of times over. Each simulated season produces a final set of standings and a postseason bracket; run enough of them and the frequency of each outcome becomes a probability. The app reports playoff odds, division odds and championship odds, along with the standings each run produced.</p>
+      </section>
+
+      <section>
+        <h2>How the simulation works</h2>
+        <h3>Ratings</h3>
+        <p>Each team carries an Elo rating that moves only on real, completed results. That rule is load-bearing: the moment simulated outcomes are allowed to feed back into ratings, a team that gets lucky in one imagined season starts the next one stronger, and the whole distribution drifts away from reality.</p>
+        <p>What actually decides a simulated game is an <em>effective</em> rating, computed fresh for that matchup from the team rating plus adjustments for the announced starting pitcher, the lineup, and the current state of the bullpen. It's used once and thrown away. Nothing derived from a simulation is ever written back.</p>
+        <h3>Fatigue</h3>
+        <p>Bullpen usage accumulates across a simulated season, so a team that burns its relievers in a long stretch of close games is weaker a week later. The data model holds the fatigue state; the rules for how fatigue builds and recovers live entirely in their own module. Models store facts, policy lives elsewhere — it's a separation that makes rebalancing a matter of editing one file instead of hunting through the codebase.</p>
+        <h3>Postseason</h3>
+        <p>The bracket is simulated round by round from the standings each run produces, rather than approximated with a formula. Series results are aggregated across runs so you can see not just who made it, but how they got there.</p>
+      </section>
+
+      <section>
+        <h2>Problems worth solving</h2>
+        <ol class="notes">
+          <li>
+            <h3>Two brackets that are the same bracket</h3>
+            <p>Aggregating results means recognising when two simulated postseasons produced the same outcome. Getting that comparison wrong quietly splits identical results into separate buckets and every reported probability comes out too low.</p>
+            <p>Two mistakes caused that. First, home-field assignment was part of the comparison key even though it isn't a visible outcome — the same set of series winners looked like two different brackets depending on venue. Second, the two division series happen in parallel with no meaningful ordering, so the same pair of results compared unequal purely because of the order they were stored in. The key now excludes home field entirely and stores the parallel series as an unordered pair, which is what they actually are.</p>
+          </li>
+          <li>
+            <h3>Impossible odds as a bug report</h3>
+            <p>At one point six teams showed 100% playoff odds, which is arithmetically impossible — there aren't that many spots. Rather than clamping the display, I traced it back through the aggregation to the underlying cause. Outputs that violate the rules of the domain are the most useful bugs you get, because they're unambiguous.</p>
+          </li>
+          <li>
+            <h3>Threads racing over the same cache</h3>
+            <p>Simulations run off the main thread so the interface stays usable, and they share cached data. Concurrent writes were corrupting cache files in a way that was masked for a long time by a per-team file layout — the collisions were rare and looked like bad data rather than a race. The fix was per-store locks plus writing to temporary files named with the process ID, thread ID and a unique identifier, then moving them into place, so two writers can never be mid-write on the same path.</p>
+          </li>
+          <li>
+            <h3>A layout that only broke for one division</h3>
+            <p>One division's standings table was cutting off text while every other division rendered fine. The cause was column widths estimated by counting characters and guessing a per-character width — an assumption that holds until one team's name is wide enough to break it. Replacing the guess with real text measurement from the font itself fixed it permanently, for every name.</p>
+          </li>
+          <li>
+            <h3>Making a toolkit behave at high DPI</h3>
+            <p>Two interface gotchas cost real time. Frames in the toolkit default to a fixed height, which leaves mysterious blank gaps whenever a frame is created before its children — the fix is to declare them collapsed and let content size them. And the native tree widget used for standings ignores the toolkit's DPI scaling entirely, so it needed its own scaling helper and a baseline font size to stay legible on a high-density display. Both are cases where I deliberately didn't take the easy escape route of swapping in a different widget, because the underlying problem would have followed me.</p>
+          </li>
+        </ol>
+      </section>
+
+      <section>
+        <h2>How I build it</h2>
+        <p>Simulation logic and interface code never mix — they're kept apart by a dedicated runner that owns the boundary, which is what makes the engine testable without a window on screen. State objects are immutable and updated by producing modified copies rather than mutating in place, so a half-applied update can't leave a season in an inconsistent state.</p>
+        <p>Work goes in reviewable phases with tests written alongside fixes, and every bug that gets fixed gets a regression test so it can't come back quietly. Before packaging, every screen gets walked through by hand.</p>
+      </section>
+
+      <section>
+        <h2>Screens</h2>
+        <div class="shotgrid">
+          <figure>
+            <img src="../assets/img/placeholder.svg" alt="">
+            <figcaption>Playoff odds by team</figcaption>
+          </figure>
+          <figure>
+            <img src="../assets/img/placeholder.svg" alt="">
+            <figcaption>Division standings</figcaption>
+          </figure>
+          <figure>
+            <img src="../assets/img/placeholder.svg" alt="">
+            <figcaption>Postseason bracket outcomes</figcaption>
+          </figure>
+        </div>
+      </section>
+
+    </div>
+  </div>
+
+  <div class="shell pager">
+    <a href="pi-server.html">Previous: Pi Server</a>
+    <a href="raincheck.html">Next: RainCheck</a>
+  </div>
+
+</main>
+
+<footer class="shell colophon">
+  <span>Built and hosted by me. No trackers, no cookies.</span>
+  <span><a href="https://github.com/USERNAME">github.com/USERNAME</a></span>
+</footer>
+
+</body>
+</html>
