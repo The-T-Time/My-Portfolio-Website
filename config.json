@@ -1,0 +1,80 @@
+{
+  "name": "Tyler Oberquell",
+  "role": "Self-taught Developer",
+  "tagline": "Games, tools & home infra.",
+
+  "links": {
+    "github": "https://github.com/The-T-Time/",
+    "itch": "https://the-ttime.itch.io/",
+    "linkedin": "https://www.linkedin.com/in/tyler-oberquell/"
+  },
+
+  "nav": {
+    "home": "Home",
+    "projects": "Projects"
+  },
+
+  "footer_note": "Built and maintained by {name}. No trackers, no cookies.",
+
+  "site_description": "Personal software projects by {name}: a roguelite game engine, an MLB season simulator, a multi-source Android weather app and a self-hosted home server dashboard.",
+
+  "featured": ["diamondsim", "raincheck", "snake"],
+  "all_projects": ["pi-server", "diamondsim", "raincheck", "snake", "benchmark", "calculator"],
+
+  "projects": {
+    "pi-server": {
+      "title": "Pi Server",
+      "short": "A self-hosted control panel for my home network, running on a Raspberry Pi 5. Live hardware stats, network scanning, remote power control and push alerts.",
+      "tools": ["Python", "FastAPI", "WebSockets", "SQLite", "Linux", "systemd"],
+      "github": null,
+      "itch": null,
+      "page": "pi-server.html",
+      "img": "pi-server.svg"
+    },
+    "diamondsim": {
+      "title": "DiamondSim",
+      "short": "A desktop app that plays out the rest of an MLB season thousands of times and reports each team's playoff odds.",
+      "tools": ["Python", "CustomTkinter", "Monte Carlo", "MLB Stats API"],
+      "github": "https://github.com/The-T-Time/DiamondSim",
+      "itch": null,
+      "page": "diamondsim.html",
+      "img": "diamondsim.svg"
+    },
+    "raincheck": {
+      "title": "RainCheck",
+      "short": "A native Android weather app that queries several forecast providers at once and averages it out.",
+      "tools": ["Kotlin", "Android", "Retrofit", "WorkManager", "AlarmManager"],
+      "github": "https://github.com/The-T-Time/RainCheck",
+      "itch": null,
+      "page": "raincheck.html",
+      "img": "raincheck.svg"
+    },
+    "snake": {
+      "title": "Snake Gone Rogue",
+      "short": "Snake, rebuilt as a roguelite. Shop upgrades, run modifiers, a rising quota, and different apples.",
+      "tools": ["Python", "pygame", "Game design", "Save systems"],
+      "github": null,
+      "itch": "https://the-ttime.itch.io/snake-gone-rogue",
+      "page": "snake-gone-rogue.html",
+      "img": "snake-gone-rogue.svg"
+    },
+    "benchmark": {
+      "title": "Human Benchmark Bot",
+      "short": "A browser automation tool that plays the Human Benchmark tests, driven from a small desktop control panel.",
+      "tools": ["Python", "Selenium", "Tkinter"],
+      "github": "https://github.com/The-T-Time/HumanBenchmark-Bot",
+      "itch": null,
+      "page": null,
+      "img": "benchmark-bot.svg"
+    },
+    "calculator": {
+      "title": "Scientific Calculator",
+      "short": "A desktop scientific calculator with support for standard and advanced mathematical operations.",
+      "tools": ["Python", "CustomTkinter", "decimal"],
+      "github": "https://github.com/The-T-Time/Scientific-Calculator",
+      "itch": null,
+      "page": null,
+      "img": "calculator.svg"
+    }
+  }
+}
