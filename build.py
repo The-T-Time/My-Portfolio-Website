@@ -6,14 +6,14 @@ OUT = os.path.dirname(os.path.abspath(__file__))
 
 NAME = "Tyler"
 ROLE = "Self-taught Developer"
-NOTE = "Games, desktop tools, mobile apps and home infrastructure."
+NOTE = "Games, tools & home infra."
 GH = "https://github.com/USERNAME"
 ITCH = "https://USERNAME.itch.io"
 LI = "https://www.linkedin.com/in/USERNAME"
 
-I_GH = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>'
-I_PAD = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 5h12a5 5 0 015 5v4a5 5 0 01-5 5h-.6a3 3 0 01-2.4-1.2L14 16.5h-4l-1 1.3A3 3 0 016.6 19H6a5 5 0 01-5-5v-4a5 5 0 015-5zm1.2 3.4v1.8H5.4v1.8h1.8v1.8H9v-1.8h1.8v-1.8H9V8.4H7.2zm9.3.6a1.4 1.4 0 100 2.8 1.4 1.4 0 000-2.8zm-2.6 2.8a1.4 1.4 0 100 2.8 1.4 1.4 0 000-2.8z"/></svg>'
-I_LI = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.225 0z"/></svg>'
+I_GH = '<svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>'
+I_PAD = '<svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 5h12a5 5 0 015 5v4a5 5 0 01-5 5h-.6a3 3 0 01-2.4-1.2L14 16.5h-4l-1 1.3A3 3 0 016.6 19H6a5 5 0 01-5-5v-4a5 5 0 015-5zm1.2 3.4v1.8H5.4v1.8h1.8v1.8H9v-1.8h1.8v-1.8H9V8.4H7.2zm9.3.6a1.4 1.4 0 100 2.8 1.4 1.4 0 000-2.8zm-2.6 2.8a1.4 1.4 0 100 2.8 1.4 1.4 0 000-2.8z"/></svg>'
+I_LI = '<svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.225 0z"/></svg>'
 
 FONTS = ('<link rel="preconnect" href="https://fonts.googleapis.com">\n'
          '<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>\n'
@@ -254,16 +254,18 @@ FEATURED = ["pi-server", "diamondsim", "raincheck"]
 ALL = ["pi-server", "diamondsim", "raincheck", "snake", "benchmark", "calculator"]
 
 
-def card(key, root):
+def card(key, root, compact=False):
     p = P[key]
     media_target = f'{root}projects/{p["page"]}' if p.get("page") else (p.get("github") or p.get("itch") or "#")
     title_html = f'<a href="{root}projects/{p["page"]}">{p["title"]}</a>' if p.get("page") else p["title"]
-    return f"""        <article class="card">
+    cls = "card card--compact" if compact else "card"
+    tool_list = p["tools"][:3] if compact else p["tools"]
+    return f"""        <article class="{cls}">
           <a class="card__media" href="{media_target}" tabindex="-1" aria-hidden="true"><img src="{root}assets/img/{p['img']}" alt=""></a>
           <div class="card__body">
             <h3 class="card__title">{title_html}</h3>
             <p class="card__desc">{p['short']}</p>
-            {tags(p['tools'], plain=True)}
+            {tags(tool_list, plain=True)}
             {buttons(p, root)}
           </div>
         </article>"""
@@ -271,11 +273,11 @@ def card(key, root):
 
 # ---------------------------------------------------------------- home
 def build_home():
-    cards = "\n".join(card(k, "") for k in FEATURED)
+    cards = "\n".join(card(k, "", compact=True) for k in FEATURED)
     html_out = head(f"{NAME} — Projects", "Personal software projects: a roguelite game engine, an MLB season simulator, a multi-source Android weather app and a self-hosted home server dashboard.", "")
     html_out += nav("home", "")
     html_out += f"""
-<main id="main" class="page">
+<main id="main" class="page page--fit">
   <div class="shell layout">
 
     <aside class="sidebar">
@@ -283,54 +285,33 @@ def build_home():
       <p class="sidebar__role">{ROLE}</p>
       <p class="sidebar__note">{NOTE}</p>
       <nav class="sidebar__links" aria-label="Elsewhere">
-        <a href="{GH}">{I_GH}GitHub</a>
-        <a href="{ITCH}">{I_PAD}itch.io</a>
-        <a href="{LI}">{I_LI}LinkedIn</a>
+        <a href="{GH}">{I_GH}<span>GitHub</span></a>
+        <a href="{ITCH}">{I_PAD}<span>itch.io</span></a>
+        <a href="{LI}">{I_LI}<span>LinkedIn</span></a>
       </nav>
     </aside>
 
-    <div>
+    <div class="main-col">
 
-      <section class="section">
-        <div class="section__head"><h2 class="section__title">About Me</h2></div>
-        <div class="panel">
-          <p>I'm a self-taught programmer who builds things for the pleasure of building them. No client briefs, no tickets — just a problem I find interesting and a blank project folder.</p>
-          <p>What holds my attention is the part after something technically works. A snake that moves across a wrapping board is easy; a snake that wraps without a single frame of flicker took two full rendering rewrites. A weather app can show you one provider's forecast; making four disagreeing sources produce one number you can trust is a different problem entirely.</p>
-          <p>So most of what's here has been through several passes. I care about architecture that holds up when I come back six weeks later, about finding the actual root cause instead of the workaround that makes the symptom disappear, and about the small interface details nobody notices until they're missing.</p>
-          <p>My projects land in four areas: games, desktop tools, mobile apps, and home infrastructure. The subject changes; the approach doesn't.</p>
-        </div>
-      </section>
-
-      <section class="section">
-        <div class="section__head"><h2 class="section__title">Skills</h2></div>
-        <div class="panel">
-          <div class="skills">
-            <div>
-              <h3>Languages</h3>
-              {tags(["Python", "Kotlin", "JavaScript", "HTML &amp; CSS", "SQL", "Bash"])}
-            </div>
-            <div>
-              <h3>Frameworks</h3>
-              {tags(["pygame", "FastAPI", "Android SDK", "CustomTkinter", "Retrofit", "Selenium"])}
-            </div>
-            <div>
-              <h3>Systems &amp; Tooling</h3>
-              {tags(["SQLite", "Linux", "systemd", "Raspberry Pi", "REST &amp; WebSockets", "Git"])}
-            </div>
-            <div>
-              <h3>Practices</h3>
-              {tags(["Root-cause debugging", "Regression tests", "Logic/UI separation", "Incremental delivery"])}
-            </div>
+      <section class="section section--tight">
+        <div class="panel panel--tight duo">
+          <div class="duo__about">
+            <h2 class="minihead">About Me</h2>
+            <p>Self-taught programmer who builds games, desktop tools and home-server software for the pleasure of solving the problem in front of me. I care about architecture that holds up months later and root-cause fixes over workarounds.</p>
+          </div>
+          <div class="duo__skills">
+            <h2 class="minihead">Skills</h2>
+            {tags(["Python", "Kotlin", "JavaScript", "pygame", "FastAPI", "Android SDK", "CustomTkinter", "SQLite", "Linux", "Git"], plain=True)}
           </div>
         </div>
       </section>
 
-      <section class="section">
+      <section class="section section--tight">
         <div class="section__head">
           <h2 class="section__title">Featured Projects</h2>
           <a class="section__link" href="projects.html">See all projects</a>
         </div>
-        <div class="cardstack">
+        <div class="cardrow-3">
 {cards}
         </div>
       </section>

@@ -146,6 +146,17 @@ code {
 /* ---------- Page frame ---------- */
 .page { padding-block: clamp(1.75rem, 4vw, 3rem) clamp(3rem, 7vw, 5rem); }
 
+/* Home page: sized to fit a standard laptop/desktop viewport with no scroll */
+.page--fit {
+  padding-block: .9rem 1.1rem;
+  min-height: calc(100vh - var(--nav-h));
+  display: flex;
+  align-items: flex-start;
+}
+.page--fit .shell { width: 100%; }
+.page--fit .sidebar { padding: 1.1rem 1.1rem; }
+.page--fit .sidebar__name { font-size: 1.4rem; margin-bottom: .25rem; }
+
 .layout {
   display: grid;
   grid-template-columns: 286px minmax(0, 1fr);
@@ -184,28 +195,40 @@ code {
 }
 
 .sidebar__links {
-  margin-top: 1.35rem;
-  padding-top: 1.25rem;
+  margin-top: 1rem;
+  padding-top: .9rem;
   border-top: 1px solid var(--border);
   display: grid;
-  gap: .3rem;
+  gap: .2rem;
 }
 .sidebar__links a {
   display: flex;
   align-items: center;
-  gap: .65rem;
-  padding: .5rem .6rem;
+  gap: .6rem;
+  padding: .4rem .55rem;
   border-radius: var(--radius-s);
-  font-size: .9rem;
+  font-size: .87rem;
   font-weight: 500;
   color: var(--text-2);
   transition: background .15s ease, color .15s ease;
 }
 .sidebar__links a:hover { background: var(--surface-hover); color: var(--link-hover); }
-.sidebar__links svg { width: 17px; height: 17px; flex: none; fill: currentColor; }
+/* icons are sized in HTML (width/height attrs) as a fail-safe; this is belt-and-braces */
+.sidebar__links svg {
+  width: 16px;
+  height: 16px;
+  min-width: 16px;
+  max-width: 16px;
+  max-height: 16px;
+  flex: 0 0 16px;
+  fill: currentColor;
+  display: block;
+}
+.sidebar__links span { line-height: 1; }
 
 /* ---------- Sections ---------- */
 .section + .section { margin-top: clamp(2rem, 4vw, 3rem); }
+.section--tight + .section--tight { margin-top: .85rem; }
 
 .section__head {
   display: flex;
@@ -235,6 +258,30 @@ code {
 }
 .panel p + p { margin-top: .8rem; }
 .panel p { max-width: 72ch; }
+
+.panel--tight { padding: .8rem 1.1rem; }
+.panel--tight p { font-size: .87rem; line-height: 1.48; max-width: 82ch; }
+
+/* About + Skills merged into one panel, side by side */
+.duo {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr;
+  gap: 1.5rem;
+  align-items: start;
+}
+@media (max-width: 720px) { .duo { grid-template-columns: 1fr; } }
+
+.minihead {
+  font-family: var(--sans);
+  font-size: .72rem;
+  font-weight: 700;
+  letter-spacing: .07em;
+  text-transform: uppercase;
+  color: var(--accent-light);
+  margin-bottom: .4rem;
+}
+.duo__skills .tags { gap: .3rem; }
+.duo__skills .tags li { font-size: .72rem; padding: .12rem .5rem; }
 
 /* ---------- Skills ---------- */
 .skills {
@@ -282,7 +329,7 @@ code {
   border: 1px solid transparent;
   transition: background .15s ease, border-color .15s ease, color .15s ease;
 }
-.btn svg { width: 15px; height: 15px; fill: currentColor; }
+.btn svg { width: 15px; height: 15px; min-width: 15px; max-width: 15px; max-height: 15px; flex: none; fill: currentColor; display: block; }
 
 .btn--primary { background: var(--accent); color: var(--text); }
 .btn--primary:hover { background: var(--accent-hover); }
@@ -303,6 +350,14 @@ code {
 @media (max-width: 760px) { .cardgrid { grid-template-columns: 1fr; } }
 
 .cardstack { display: grid; gap: clamp(.9rem, 2vw, 1.25rem); }
+
+.cardrow-3 {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: .85rem;
+}
+@media (max-width: 900px) { .cardrow-3 { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 600px) { .cardrow-3 { grid-template-columns: 1fr; } }
 
 .card {
   display: flex;
@@ -333,6 +388,24 @@ code {
 .card__title a:hover { color: var(--accent-light); }
 .card__desc { font-size: .92rem; margin: -.25rem 0 0; }
 .card__body .actions { margin-top: auto; padding-top: .3rem; }
+
+/* Compact variant — used for the 3-across featured row on the home page.
+   Deliberately short: this row has to fit on screen alongside everything else. */
+.card--compact .card__media img { aspect-ratio: 16 / 6; }
+.card--compact .card__body { padding: .65rem .75rem .75rem; gap: .35rem; }
+.card--compact .card__title { font-size: .95rem; }
+.card--compact .card__desc {
+  font-size: .76rem;
+  line-height: 1.4;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.card--compact .tags { gap: .25rem; }
+.card--compact .tags li { font-size: .65rem; padding: .06rem .4rem; }
+.card--compact .btn { font-size: .73rem; padding: .3rem .6rem; }
+.card--compact .btn svg { width: 12px; height: 12px; min-width: 12px; max-width: 12px; max-height: 12px; }
 
 /* ---------- Project detail hero ---------- */
 .hero {
